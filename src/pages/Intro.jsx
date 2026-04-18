@@ -36,10 +36,7 @@ export default function Intro() {
     <div className="screen intro" onClick={advance}>
       {SLIDES.map((slide, i) => (
         <div key={i} className={`intro-slide ${i === current ? 'active' : ''}`}>
-          <svg className="intro-logo" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="256,72 452,432 60,432" fill="none" stroke="#C9A84C" strokeWidth="32" strokeLinejoin="round" />
-            <line x1="152" y1="312" x2="360" y2="312" stroke="#C9A84C" strokeWidth="32" strokeLinecap="round" />
-          </svg>
+          <img className="intro-logo" src="/icons/Gold.png" alt="Architect Programs" />
 
           <h1 className="intro-heading">{slide.heading}</h1>
 
