@@ -381,6 +381,23 @@ input, textarea {
   z-index: 10;
 }
 
+.signout-btn {
+  position: absolute;
+  top: calc(var(--safe-top) + 24px);
+  right: 20px;
+  z-index: 10;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  padding: 4px 0;
+  opacity: 0.6;
+}
+.signout-btn:active { opacity: 1; }
+
 /* -- Button view (not yet logged today) -- */
 .button-view {
   position: absolute;

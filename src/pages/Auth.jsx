@@ -8,6 +8,7 @@ export default function Auth() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [confirmSent, setConfirmSent] = useState(false)
   const navigate = useNavigate()
 
   async function handleSubmit(e) {
@@ -15,18 +16,37 @@ export default function Auth() {
     setError('')
     setLoading(true)
 
-    const { error: authError } = mode === 'signup'
-      ? await supabase.auth.signUp({ email, password })
-      : await supabase.auth.signInWithPassword({ email, password })
-
-    setLoading(false)
-
-    if (authError) {
-      setError(authError.message)
+    if (mode === 'signup') {
+      const { data, error: authError } = await supabase.auth.signUp({ email, password })
+      setLoading(false)
+      if (authError) { setError(authError.message); return }
+      if (data.session) {
+        navigate('/dashboard')
+      } else {
+        setConfirmSent(true)
+      }
       return
     }
 
+    const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
+    setLoading(false)
+    if (authError) { setError(authError.message); return }
     navigate('/dashboard')
+  }
+
+  if (confirmSent) {
+    return (
+      <div className="screen screen--centered">
+        <img className="auth-logo" src="/icons/Gold.png" alt="Architect Programs" />
+        <h1 className="auth-heading">Check your inbox.</h1>
+        <p className="auth-subheading" style={{ maxWidth: 280, textAlign: 'center', lineHeight: 1.7 }}>
+          We sent a confirmation link to <strong style={{ color: 'var(--gold)' }}>{email}</strong>. Click it to activate your account, then come back and sign in.
+        </p>
+        <button className="btn-primary" style={{ marginTop: 40 }} onClick={() => { setConfirmSent(false); setMode('signin') }}>
+          Back to Sign In
+        </button>
+      </div>
+    )
   }
 
   return (

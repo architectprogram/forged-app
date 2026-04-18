@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { supabase } from '../lib/supabase'
 import { useGoal } from '../hooks/useGoal'
 import { useCompletions } from '../hooks/useCompletions'
 import { getDayNumber, getCompoundMultiplier } from '../lib/utils'
@@ -85,6 +86,7 @@ export default function Dashboard() {
       return (
         <div className="screen screen--centered gate-screen">
           <ArchitectLogo className="dashboard-logo" style={{ position: 'absolute', top: 'calc(var(--safe-top) + 20px)', left: 20 }} />
+          <button className="signout-btn" onClick={() => supabase.auth.signOut()} aria-label="Sign out">Sign out</button>
           <div className="gate-wins">{winCount}</div>
           <div className="gate-wins-label">wins in 21 days</div>
           <h2 className="gate-heading">You built a habit.</h2>
@@ -115,6 +117,9 @@ export default function Dashboard() {
   return (
     <div className="screen dashboard">
       <ArchitectLogo className="dashboard-logo" />
+      <button className="signout-btn" onClick={() => supabase.auth.signOut()} aria-label="Sign out">
+        Sign out
+      </button>
 
       {/* BUTTON VIEW — not yet logged today */}
       {(uiState === UI.BUTTON || uiState === UI.EXITING) && (
