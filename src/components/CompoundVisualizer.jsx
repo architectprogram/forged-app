@@ -26,7 +26,7 @@ export default function CompoundVisualizer({ completions }) {
     const { isCompleted, isInStreak, day } = node
 
     if (!isCompleted) {
-      return { fill: '#161616', filter: 'none', r: NODE_R }
+      return { fill: '#E5E1D9', filter: 'none', r: NODE_R }
     }
 
     if (isInStreak) {
@@ -65,7 +65,7 @@ export default function CompoundVisualizer({ completions }) {
             cy={CENTER}
             r={RADIUS}
             fill="none"
-            stroke="#1A1A1A"
+            stroke="#DDD9D0"
             strokeWidth="1"
           />
 
@@ -93,7 +93,7 @@ export default function CompoundVisualizer({ completions }) {
             x={CENTER}
             y={CENTER - 12}
             textAnchor="middle"
-            fill="#F0EDE6"
+            fill="#1C1916"
             fontSize="38"
             fontWeight="200"
             fontFamily="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
@@ -105,7 +105,7 @@ export default function CompoundVisualizer({ completions }) {
             x={CENTER}
             y={CENTER + 14}
             textAnchor="middle"
-            fill="#444444"
+            fill="#9A9590"
             fontSize="10"
             fontFamily="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
             letterSpacing="2"

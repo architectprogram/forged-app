@@ -134,6 +134,9 @@ export default function Dashboard() {
         <div className="visualizer-view">
           <GoalHeader goal={goal} dayNumber={dayNumber} compact />
           <CompoundVisualizer completions={completions} currentDay={dayNumber} />
+          <button className="change-answer-btn" onClick={() => setUiState(UI.BUTTON)}>
+            Change today's answer
+          </button>
         </div>
       )}
     </div>
